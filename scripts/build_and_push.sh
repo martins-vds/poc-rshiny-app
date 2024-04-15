@@ -15,11 +15,6 @@ function main() {
         local image_name=""
         local version_file=""
 
-        if [ "$#" -ne 7 ]; then
-                display_usage
-                exit 1
-        fi
-
         while [[ $# -gt 0 ]]; do
                 case "$1" in
                 --acr-name)
