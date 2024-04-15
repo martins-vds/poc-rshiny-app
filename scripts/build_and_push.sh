@@ -15,7 +15,7 @@ function main() {
         local image_name=""
         local version_file=""
 
-        if [ "$#" -ne 6 ]; then
+        if [ "$#" -ne 7 ]; then
                 display_usage
                 exit 1
         fi
