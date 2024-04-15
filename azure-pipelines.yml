@@ -1,0 +1,38 @@
+name: $(Date:yyyyMMdd).$(Rev:r)
+
+trigger: none
+
+parameters:
+  - name: environment
+    displayName: Environment
+    type: string
+    default: azuretre-dev
+    values:
+      - "azuretre-dev"
+
+variables:
+    - group: '${{ parameters.environment }}'
+    - name: DOCKER_DIRECTORY
+      value: '.'
+    - name: DOCKER_FILE
+      value: 'Dockerfile'
+    - name: IMAGE_NAME_PREFIX
+      value: 'microsoft/azuretre'
+    - name: IMAGE_NAME
+      value: 'rshiny-workspace-service'
+    - name: VERSION_FILE
+      value: 'version.txt'
+
+jobs:
+- job:
+  displayName: 'Build RShiny App'
+  steps:
+  - task: AzureCLI@2
+    displayName: 'Build and Push'
+    inputs:
+      azureSubscription: $(AZURE_CREDENTIALS)
+      addSpnToEnvironment: true
+      scriptType: scriptPath
+      scriptPath: './scripts/build_and_push.sh'
+      arguments: --acr-name "$(ACR_NAME)" --docker-file "$(DOCKER_FILE)" --docker-directory "$(DOCKER_DIRECTORY)" --image-name-prefix "$(IMAGE_NAME_PREFIX)" --image-name "$(IMAGE_NAME)" --version-file "$(VERSION_FILE)"
+
