@@ -50,7 +50,7 @@ function main() {
         done
 
         version_line=$(cat "${version_file}")
-        version_array=("${version_line//=/ }")
+        version_array=(${version_line//=/ })
         version="${version_array[1]//\"/}"
 
         az acr login --name "${acr_name}"
