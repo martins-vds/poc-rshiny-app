@@ -35,7 +35,8 @@ jobs:
     inputs:
       azureSubscription: $(AZURE_CREDENTIALS)
       addSpnToEnvironment: true
-      scriptType: scriptPath
+      scriptType: bash
+      scriptLocation: 'scriptPath'
       scriptPath: './scripts/build_and_push.sh'
       arguments: '--acr-name "$(ACR_NAME)" --docker-file "$(DOCKER_FILE)" --docker-directory "$(DOCKER_DIRECTORY)" --image-name-prefix "$(IMAGE_NAME_PREFIX)" --image-name "$(IMAGE_NAME)" --version-file "$(VERSION_FILE)"'
 
