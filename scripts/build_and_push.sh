@@ -50,6 +50,7 @@ function main() {
         done
 
         version_line=$(cat "${version_file}")
+        # shellcheck disable=SC2206
         version_array=(${version_line//=/ })
         version="${version_array[1]//\"/}"
 
