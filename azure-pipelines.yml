@@ -23,6 +23,9 @@ variables:
     - name: VERSION_FILE
       value: 'version.txt'
 
+pool:
+  name: $(BUILD_AGENTS_POOL_NAME)
+
 jobs:
 - job:
   displayName: 'Build RShiny App'
